@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Manidhar Anupoju</title>
+    <title>Mani's Blog</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -27,8 +27,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="http://twitter.com/Manidhar2493">Twitter <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="{% static 'Manidhar.doc' %}">Resume</a>
-                    <a class="nav-item nav-link" href="{%url 'allblogs'%}">Blog</a>
+                    <a class="nav-item nav-link" href="{%static 'Manidhar.doc'%}">Resume</a>
+                    <a class="nav-item nav-link active" href="{%url 'allblogs'%}">Blog</a>
                     <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
                 </div>
             </div>
@@ -36,36 +36,36 @@
     </header>
 
     <main role="main">
-
-      <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Manidhar Anupoju</h1>
-          <p class="lead text-muted">Hey! My name is Manidhar and I'm a python enthusiast.</p>
-          <p>
-            <a href="mailto:manidhar2493@hotmail.com" class="btn btn-primary my-2">Email me</a>
-            <!-- <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
-          </p>
-          <img src="{%static 'Manidhar.jpg' %}" height="320" />
-        </div>
-      </section>
+            <h1 class="text-center pt-4">Welcome to Mani's Blog</h1>
 
-      <div class="album py-5 bg-light">
+            <br/>
+            <br/>
+            <h2>Latest posts</h2>
+            <hr/> <!-- adds the line -->
+        </div>
         <div class="container">
 
-          <div class="row">
-             {% for job in jobs.all%}
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="{{ job.imagefun.url }}" />
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-                </div>
-                
-            </div>
-              {% endfor %}
-          </div>
+                {% for blog in blogs.all %}
+
+                <a href ="{% url 'detail' blog.id%}"><h3>{{ blog.title }}</h3></a>
+                <br/>
+                {{ blog.pub_date_modified }}
+                <br/>
+                <br/>
+                <img class="img-fluid rounded" src="{{blog.image.url}}" height="200" width="200"/>
+                <br/>
+                <br/>
+                <p>{{ blog.summary }}</p>
+                <br/>
+                <hr/>
+
+                {% endfor %}
+
         </div>
-      </div>
+
+
+
 
     </main>
 
